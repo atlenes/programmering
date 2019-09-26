@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    Døgnpris 2000 kr<br>
+
+    Avreise: <input type="date" id="avreise" oninput="beregnPris()"></input><br>
+    Hjemkomst: <input type="date" id="hjemkomst" oninput="beregnPris()"></input><br>
+
+    <div id="resultat"></div>
+
+    <script>
+
+    function beregnPris() {
+      // alert("hei");
+
+      let avreise, hjemkomst;
+
+      avreise = new Date(document.getElementById("avreise").value);
+      hjemkomst = new Date(document.getElementById("hjemkomst").value);
+
+      if(avreise > hjemkomst) {
+        document.getElementById("resultat").innerHTML = "Hjemkomst må være etter avreise!";
+      } else {
+
+        var timeDiff = Math.abs(avreise.getTime() - hjemkomst.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        var pris = diffDays * 2000;
+
+        resultat = "Pris for overnatting blir: " + pris + "<br>";
+        document.getElementById("resultat").innerHTML = resultat;
+      }
+
+
+
+    }
+
+    </script>
+
+  </body>
+</html>
